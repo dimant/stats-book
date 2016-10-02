@@ -668,7 +668,7 @@ Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}
 
 The reason for this formulation of the test is historical. Before computers were commonly available, it was notoriously difficult to compute probabilities for given distributions and values. So difficult in fact that in the back of most statistical textbooks one could find tables of precomputed probabilities. These were provided only for common distributions such as $N(0, 1)$. The $Z$ value in equation \ref{formula:z-test} is simply a reformulation of the statistic in such a way that $Z \thicksim N(0, 1)$.
 
-Here we will use R instead of printed out tables to answer the question whether the average age of runners is significantly different form 30. If we would like to be 95\% certain of our answer, that is almost certainly certain, we use the R function {\em qnorm} to figure out the top and bottom 2.5\% of the distribution -- the most unlikely values. The actual $\mu$ is 95\% likely to be between these boundaries.
+Here we will use R instead of printed out tables to answer the question whether the average age of runners is significantly different form 30. If we would like to be 95\% certain of our answer, that is almost certainly certain, we use the R function {\em qnorm} to figure out the top and bottom 2.5\% of the distribution -- the most unlikely values. The actual $\mu$ is 95\% likely to be between those boundaries.
 
 \begin{verbatim}
 > qnorm(0.025, mean(ages), sd(ages) / sqrt(length(ages)))
