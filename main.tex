@@ -659,7 +659,7 @@ Using the property in equation \ref{formula:variance-property} the variance of $
 Var(\bar{X}) = Var(\frac{1}{n}\sum_{i=0}^n X_i) = \frac{1}{n^2}\sum_{i=0}^n Var(X_i) = \frac{\sigma^2}{n}
 \end{equation}
 
-to arrive at the distribution of the arithmetic mean $\bar{X} \thicksim N(\mu, \frac{\sigma^2}{n})$. This would be sufficient to test our hypothesis $H_0: \bar{Age} = 30$. In textbooks however you will find a different definition of the \hbox{Z-Test}:
+to arrive at the distribution of the arithmetic mean $\bar{X} \thicksim N(\mu, \frac{\sigma^2}{n})$. This would be sufficient to test our hypothesis $H_0: \mu = 30$. In textbooks however you will find a different definition of the \hbox{Z-Test}:
 
 \begin{equation}
 Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}
@@ -668,7 +668,7 @@ Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}
 
 The reason for this formulation of the test is historical. Before computers were commonly available, it was notoriously difficult to compute probabilities for given distributions and values. So difficult in fact that in the back of most statistical textbooks one could find tables of precomputed probabilities. These were provided only for common distributions such as $N(0, 1)$. The $Z$ value in equation \ref{formula:z-test} is simply a reformulation of the statistic in such a way that $Z \thicksim N(0, 1)$.
 
-Here we will use R instead of printed out tables to answer the question whether the average age of runners is significantly different form 30. If we would like to be 95\% certain of our answer, that is almost certainly certain, we use the R function {\em qnorm} to figure out the top and bottom 2.5\% of the distribution -- the most unlikely values. Anything between those thresholds is 95\% likely to occur.
+Here we will use R instead of printed out tables to answer the question whether the average age of runners is significantly different form 30. If we would like to be 95\% certain of our answer, that is almost certainly certain, we use the R function {\em qnorm} to figure out the top and bottom 2.5\% of the distribution -- the most unlikely values. The actual $\mu$ is 95\% likely to be between these boundaries.
 
 \begin{verbatim}
 > qnorm(0.025, mean(ages), sd(ages) / sqrt(length(ages)))
@@ -677,10 +677,12 @@ Here we will use R instead of printed out tables to answer the question whether 
 [1] 37.2594
 \end{verbatim}
 
-We conclude that any estimates of the average age lower than 36.71596 and above 37.2594 are extremely unlikely to occur. The value 30 is certainly deep inside the critical region of our test. We say that $H_0$ is rejected which means that the alternative hypothesis $H_1: \mu \neq 30$ holds and we are 95\% confident.
+We conclude that any estimates of the average age lower than 36.71596 and above 37.2594 are extremely unlikely to occur. The value 30 is certainly deep inside the critical region of our test. We say that $H_0$ is rejected which means that the alternative hypothesis $H_1: \mu \neq 30$ holds and we are 95\% confident. 
+
+At this point it is worth remembering that the ages of marathon runners are not normally distributed which violates assumption 1 of the test and renders our finding meaningless.
 
 \begin{tcolorbox}
-	The key take-aways from this section should be:
+	The key take-aways from this section are:
 	\begin{itemize}
 		\item Form a null hypothesis $H_0$ and an alternative hypothesis $H_1$ to fit an existing test.
 		\item Know the assumptions of the test you are planning to use and verify that you are not violating any of them.
