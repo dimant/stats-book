@@ -692,7 +692,13 @@ At this point it is worth remembering that the ages of marathon runners are not 
 \end{tcolorbox}
 
 \section{Test for Normality}
-kolomogorov smirnov test \cite{kanji2006}
+In the previous section we introduced a language in which to ask questions that can be answered with statistical tests. The \hbox{Z-Test} is just one of hundreds other methods which are cataloged in literature\cite{kanji2006} and ge be drawn upon as needed. In addition, most of the tests are already implemented in the R software package so even the tricky nature of implementing mathematical methods in software can be avoided. An point stressed in the context of the \hbox{Z-Test} is that it only works as expected if the data is drawn from a normal distribution. 
+
+Fortunately there is a statistical test which can be used to check if the data comes from a normal distribution. The null hypothesis $H_0$ is ``the difference an observed and a specified distribution is not significant'' with $H_1$ implying that the two distributions are significantly different. The assumption made by the test is that both probability distribution functions are continuous.
+
+ 
+
+kolomogorov smirnov test 
 
 \begin{Verbatim}
 > ks.test(
@@ -763,30 +769,11 @@ ratio of variances
 1.103092 
 \end{Verbatim}
 
-
-\section{Correlation}
-covariance
-
-correlation coefficient
-
 \section{Generalization}
 comparing quantiles
 $chi^2$ test
 
-\section{The Red Herring}
-\begin{figure}
-	\centering
-	\includegraphics{graphics/plot-letter-a-time}
-	\label{img:plot-letter-a-time}
-	\caption{Occurrence of letter {\em a} in name correlated with finishing time.}
-\end{figure}
 
-\begin{figure}
-	\centering
-	\includegraphics{graphics/plot-letter-a-agegrade}
-	\label{img:plot-letter-a-agegrade}
-	\caption{Occurrence of letter {\em a} in name correlated with finishing age grade.}
-\end{figure}
 \backmatter
 
 %----------------------------------------------------------------------------------------
