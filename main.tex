@@ -3,6 +3,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass{tufte-book} % Use the tufte-book class which in turn uses the tufte-common class
+\usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{tcolorbox}
 
@@ -240,17 +241,17 @@ variability
 
 \section{Center}
 
-Suppose someone asked the contrived question: ``How old are Alex, Ben and Charlie?'' You are expected to reply with a single number in such a way that you are as close as possible to the individual ages of Alex, Ben and Charlie. If you guess $\bar{x}$, the terms $\bar{x} - Alex$, $\bar{x} - Ben$ and $\bar{x} - Charlie$ should be as small as possible.
+Suppose someone asked the contrived question: ``How old are Alex, Ben and Charlie?'' You are expected to reply with a single number in such a way that you are as close as possible to the individual ages of Alex, Ben and Charlie. If you guess $\bar{X}$, the terms $\bar{X} - Alex$, $\bar{X} - Ben$ and $\bar{X} - Charlie$ should be as small as possible.
 
-The difference between $\bar{x}$ and the age of a person is called an estimate error. Other names for this value are {\em residual} or also {\em deviation}. When guessing $\bar{x}$, we would like the sum of errors to minimal. Note that when calculating the sum, it is helpful if all values are positive. If this were not the case, $\bar{x} - 45$ and $\bar{x} - 55$ would cancel each other out instead of add up for $\bar{x} = 50$. The simplest way to make all deviations positive is to take their absolute value. If the observed age is written as $x$ and the guessed age as $\bar{x}$ the sum of absolute errors is calculated as shown in equation \ref{formula:sae}.
+The difference between $\bar{X}$ and the age of a person is called an estimate error. Other names for this value are {\em residual} or also {\em deviation}. When guessing $\bar{X}$, we would like the sum of errors to minimal. Note that when calculating the sum, it is helpful if all values are positive. If this were not the case, $\bar{X} - 45$ and $\bar{X} - 55$ would cancel each other out instead of add up for $\bar{X} = 50$. The simplest way to make all deviations positive is to take their absolute value. If the observed age is written as $x_i$ and the guessed age as $\bar{X}$ the sum of absolute errors is calculated as shown in equation \ref{formula:sae}.
 
 \begin{equation} \label{formula:sae}
-	SAE = \sum_{i=1}^n |\bar{x} - x|
+	SAE = \sum_{i=1}^n |\bar{X} - x_i|
 \end{equation}
 
-A number which minimizes all errors can be useful if you are dealing with a large number of Alex, Ben and Charlies. For example, I could ask you to estimate someones age and the only clue I give you is that they participated in the 2016 San Francisco marathon. If you had a number $\bar{x}$ for all marathon participants, you could just guess $\bar{x}$ and be sure that you will be reasonably close to their real age. In other words: you {\em expect} that the age of a marathon participant $\bar{x}$.
+A number which minimizes all errors can be useful if you are dealing with a large number of Alex, Ben and Charlies. For example, I could ask you to estimate someones age and the only clue I give you is that they participated in the 2016 San Francisco marathon. If you had a number $\bar{X}$ for all marathon participants, you could just guess $\bar{X}$ and be sure that you will be reasonably close to their real age. In other words: you {\em expect} that the age of a marathon participant $\bar{X}$.
 
-If the ages of all participants are sorted in ascending order, it is reasonable to expect that there will be a clump of folks around an imaginary age $\bar{x}$. Some folks will be a lot younger than $\bar{x}$ and some older. Watching marathon competitions on TV, the best runners seem to be around the same age which could lead us to believe that there is an optimal age for the sport. Therefor it might be reasonable to expect that very young and old participants are fewer. 
+If the ages of all participants are sorted in ascending order, it is reasonable to expect that there will be a clump of folks around an imaginary age $\bar{X}$. Some folks will be a lot younger than $\bar{X}$ and some older. Watching marathon competitions on TV, the best runners seem to be around the same age which could lead us to believe that there is an optimal age for the sport. Therefor it might be reasonable to expect that very young and old participants are fewer. 
 
 \begin{figure}
 	\centering
@@ -272,18 +273,18 @@ With this expectation there ought to be a clump of ages around the center of dat
 	\caption{Distribution mean.}
 \end{figure}
 
-Typically the center of mass for a data is  denoted as $\mu$ and is also called true or theoretical mean. The educated guess $\bar{x}$ is an attempt to estimate the number $\mu$ by observing some portion of the data. 
+Typically the center of mass for a data is  denoted as $\mu$ and is also called true or theoretical mean. The educated guess $\bar{X}$ is an attempt to estimate the number $\mu$ by observing some portion of the data. 
 
 \begin{tcolorbox}
 	A recurring theme in this text is identifying numbers which exist in nature but cannot be observed directly, such as $\mu$, and find ways to estimate them. While there are many approaches to this end, we will estimate values by drawing conclusions from observed data.
 \end{tcolorbox}
 
-When trying to calculate $\bar{x}$ it helps to remember that the ultimate goal is to reduce the sum of errors. Let's say there is a group of 100 people: 99 of them are 45 years old and 1 is 30 years old. Note that for $\bar{x} = 45$ the sum of absolute errors would be $45 - 30 = 15$ while for $\bar{x} = 30$ it would be $(45 - 30) \times 99 = 1485$. It seems like the sum of errors is smaller when $\bar{x}$ is closer to the biggest clump of numbers in the data.
+When trying to calculate $\bar{X}$ it helps to remember that the ultimate goal is to reduce the sum of errors. Let's say there is a group of 100 people: 99 of them are 45 years old and 1 is 30 years old. Note that for $\bar{X} = 45$ the sum of absolute errors would be $45 - 30 = 15$ while for $\bar{X} = 30$ it would be $(45 - 30) \times 99 = 1485$. It seems like the sum of errors is smaller when $\bar{X}$ is closer to the biggest clump of numbers in the data.
 
-A function which estimates $\bar{x}$ by having the largest clump of numbers pull $\bar{x}$ towards itself the strongest is the arithmetic mean:
+A function which estimates $\bar{X}$ by having the largest clump of numbers pull $\bar{X}$ towards itself the strongest is the arithmetic mean:
 
 \begin{equation} \label{formula:arithmetic-mean}
-	\bar{x} = \frac{1}{n} \sum_{i=i}^{n} x_i
+	\bar{X} = \frac{1}{n} \sum_{i=i}^{n} x_i
 \end{equation}
 
 \begin{tcolorbox}
@@ -300,7 +301,7 @@ In R, computing the average age of marathon participants is fairly straightforwa
 In closing, it is worth noting that the arithmetic mean minimizes a subtly different function than the sum of absolute errors. Instead, it minimizes the sum of square errors (see equation \ref{formula:sse})
 
 \begin{equation} \label{formula:sse}
-	SSE = \sum_{i=1}^n (\bar{x} - x)^2
+	SSE = \sum_{i=1}^n (x_i - \bar{X})^2
 \end{equation}
 
 \begin{tcolorbox}
@@ -309,7 +310,7 @@ Minimizing the sum of squared errors is a method which finds application in many
 
 In the two centuries of its existence, a large amount of research has been published on the method of least squares. Important techniques such as analysis of variance, linear regression analysis and principal component analysis all find their roots in minimizing the sum of squared errors. While the comprehensive framework of statistical analysis which has been built around the concept of squared errors makes it a suitable starting point for an introduction into the field of statistics, the method does have a notable drawback \cite{Abdi2007}.
 
-The Achilles' heel of SSE is the large influence which observations far from $\bar{x}$ have on the statistic. We previously experimented with a group of 100 people: 99 of which are 45 years old and one of which is 30 years old. In the case that we guess $\bar{x}$ to be 45, the sum of absolute errors turned out to be 15. If we use the SSE as an error estimate instead, the error becomes $(45 - 30) ^2 = 225$. The further an observation is from the center of data, the more leverage it has on the outcome of any analysis based on SSE.
+The Achilles' heel of SSE is the large influence which observations far from $\bar{X}$ have on the statistic. We previously experimented with a group of 100 people: 99 of which are 45 years old and one of which is 30 years old. In the case that we guess $\bar{X}$ to be 45, the sum of absolute errors turned out to be 15. If we use the SSE as an error estimate instead, the error becomes $(45 - 30) ^2 = 225$. The further an observation is from the center of data, the more leverage it has on the outcome of any analysis based on SSE.
 
 Another method for taking a guess at the center of data is the median:
 
@@ -416,9 +417,9 @@ In its simplified version, the Gaussian distribution can be written as the funct
 	\caption{Normal distribution with mean 0 and standard deviation 1.}
 \end{figure}
 
-For the purposes of this text it is sufficient to remember the basic properties of the Gaussian distribution. It is a mathematical function of 3 parameters: $\sigma$, $\mu$ and $x$. When $\sigma = 1$ and $\mu = 0$ we call the resulting function of $x$ a standard normal distribution. A plot which shows how $P(x)$ varies as $x$ changes is shown in figure \ref{img:plot-normal}. 
+For the purposes of this text it is sufficient to remember the basic properties of the Gaussian distribution. It is a mathematical function of 2 parameters: $\sigma$, $\mu$. When $\sigma = 1$ and $\mu = 0$ we call the resulting function of $x$ a standard normal distribution. A plot which shows how $P(x)$ varies as $x$ changes is shown in figure \ref{img:plot-normal}. 
 
-If different values are plugged in for $\mu$ and $\sigma$, the shape of the curve will change. By changing $\mu$, the curve can be moved left or right. If $\sigma$ is changed, the bell can be made wider and narrower. For example we can use our estimates for mean and standard deviation of ages in the marathon data: $36.98$ and $11.03$ respectively. Such a plot can be drawn using R:
+If different values are plugged in for $\mu$ and $\sigma$, the shape of the curve will change. By changing $\mu$, the curve can be moved left or right. If $\sigma$ is changed, the bell can be made wider and narrower. We say write: $X \thicksim N(\mu, \sigma)$ and we say that the random variable $X$ is normally distributed with mean $\mu$ and standard deviation $\sigma$. For example we can use our estimates for mean and standard deviation of ages in the marathon data: $36.98$ and $11.03$ respectively. Such a plot can be drawn using R:
 
 \begin{Verbatim}
 > curve(dnorm(x, mean(ages), sd(ages)), from=0, to=80)
@@ -618,7 +619,9 @@ In this chapter, a different approach to analyzing data is presented. In this ne
 A hypothesis, in layman's terms, is a question about the data. An example of such a question is: ``Is the mean age of marathon runners different from 30?''. The question is then answered in step 3 of the method. Step 2 is fairly complex and far outside the scope of an introduction to statistics. Fortunately probabilistic models for many useful questions that can be asked of data have already been created by other, more experienced statisticians. These models can be used as is as long as the questions we ask follow the paved path.
 
 \section{Statistical Testing}
-The sample question about whether the mean of marathon runners is different from 30 was chosen deliberately. The reason for the phrasing is that it fits with a method designed to answer questions of the form $H_0: \mu = \mu_0$ where $\mu$ is the mean of the underlying distribution and $\mu_0$ a number we are interested in as a potential candidate for being equal to $\mu$. The method in question is called the \hbox{Z-Test} and is essentially a formula which given data produces the probability of $H_0$ being observed:
+While forming probabilistic models from scratch is usually an arduous adventure, we can create a model to answer a simple question to illustrate the fundamental concepts.
+
+The question in the previous section about whether the mean of marathon runners is different from 30 was chosen deliberately. The reason for this phrasing is that it fits a method designed to answer questions of the form $H_0: \mu = \mu_0$ where $\mu$ is the mean of the underlying distribution and $\mu_0$ a number we are interested in as a potential candidate for being equal to $\mu$. The method in question is called the \hbox{Z-Test} and is essentially a formula which given data produces the probability of $H_0$ being observed:
 
 \begin{equation}
 P_{H_0 = True} = \hbox{Z-Test}(data)
@@ -628,12 +631,53 @@ To build an understanding of why and how this process works, it is helpful to re
 
 For the sake of argument, let us assume that the ages of runners are normally distributed. What would be the distribution from which the estimated mean age is drawn? An exhaustive and rigorous answer to this question would take us deep into calculus and theory of probability territory. Here we will limit ourselves to an intuitive argument which makes the connection between theoretical distribution and observed data more apparent.
 
-The leaps of faith made to simplify this explanation are twofold: firstly, the arithmetic mean estimator when used on normally distributed data is itself distributed normally: 
+Two leaps of faith are made to simplify this explanation: firstly, the arithmetic mean estimator when used on normally distributed data is itself distributed normally: $\bar{X} \thicksim N(\mu_{\bar{X}}, \sigma_{\bar{X}})$. The expected value of $\mu_{\bar{X}}$ coincides with the value of expectation for $\mu$ of the underlying data. Our second leap of faith is needed to derive the variance of $\mu_{\bar{X}}$:
+
 \begin{equation}
-\bar{X} \thinsim N(\mu_{\bar{X}}, \sigma_{\bar{X}}) 
+Var(\bar{X}) = Var(\frac{1}{n}\sum_{i=0}^n X_i)
+\label{formula:mean-variance}
 \end{equation}
 
+Keen observation reveals that in order to come up with a variance for $\bar{X}$ we treat the arithmetic mean estimator as a function of $X_i$. The parameter $X_i$ represents not as per usual our observed data but the slightly different notion of $n$ random variables coming from the same distribution as the observed data. This subtle distinction signifies that we are making an assumption about the distribution of observed data. Knowing the assumptions implicitly made by a statistical method is crucial to producing accurate results. If your experiment violates the assumptions, your results will be meaningless. In this case there are three assumptions:
 
+\begin{enumerate}
+	\item $X$ is normally distributed
+	\item the observations of all $X_i$ are independent of each other
+	\item the population variance exists and is known
+\end{enumerate}
+
+Assumption 2 leads directly to the second leap of faith necessary to conclude formulating the \hbox{Z-Test}. When the $X_i$ are independent the following property holds for their variances  \footnote{\url{https://en.wikipedia.org/wiki/Variance}}:
+
+\begin{equation}
+Var(\sum_{i=0}^n a X_i) = a^2 \sum_{i = 0}^n Var(X_i)
+\label{formula:variance-property}
+\end{equation}
+
+Using the property in equation \ref{formula:variance-property} the variance of $\bar{X}$ defined in equation \ref{formula:mean-variance} can be expanded as:
+
+\begin{equation}
+Var(\bar{X}) = Var(\frac{1}{n}\sum_{i=0}^n X_i) = \frac{1}{n^2}\sum_{i=0}^n Var(X_i) = \frac{\sigma^2}{n}
+\end{equation}
+
+to arrive at the distribution of the arithmetic mean $\bar{X} \thicksim N(\mu, \frac{\sigma^2}{n})$. This would be sufficient to test our hypothesis $H_0: \bar{Age} = 30$. In textbooks however you will find a different definition of the \hbox{Z-Test}:
+
+\begin{equation}
+Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}
+\label{formula:z-test}
+\end{equation}
+
+The reason for this formulation of the test is historical. Before computers were commonly available, it was notoriously difficult to compute probabilities for given distributions and values. So difficult in fact that in the back of most statistical textbooks one could find tables of precomputed probabilities. These were provided only for common distributions such as $N(0, 1)$. The $Z$ value in equation \ref{formula:z-test} is simply a reformulation of the statistic in such a way that $Z \thicksim N(0, 1)$.
+
+Here we will use R instead of printed out tables to answer the question whether the average age of runners is significantly different form 30. If we would like to be 95\% certain of our answer, that is almost certainly certain, we use the R function {\em qnorm} to figure out the top and bottom 2.5\% of the distribution -- the most unlikely values. Anything between those thresholds is 95\% likely to occur.
+
+\begin{verbatim}
+> qnorm(0.025, mean(ages), sd(ages) / sqrt(length(ages)))
+[1] 36.71596
+> qnorm(1-0.025, mean(ages), sd(ages) / sqrt(length(ages)))
+[1] 37.2594
+\end{verbatim}
+
+We conclude that any estimates of the average age lower than 36.71596 and above 37.2594 are extremely unlikely to occur. The value 30 is certainly deep inside the critical region of our test. We say that $H_0$ is rejected which means that the alternative hypothesis $H_1: \mu \neq 30$ holds and we are 95\% confident.
 
 \section{Test for Normality}
 kolomogorov smirnov test \cite{kanji2006}

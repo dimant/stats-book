@@ -11,3 +11,4 @@
 *.log
 *.lot
 *.out
+.synctex.gz
