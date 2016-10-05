@@ -696,22 +696,42 @@ In the previous section we introduced a language in which to ask questions that 
 
 Fortunately there is a statistical test which can be used to check if the data comes from a normal distribution. The null hypothesis $H_0$ is ``the difference an observed and a specified distribution is not significant'' with $H_1$ implying that the two distributions are significantly different. The assumption made by the test is that both probability distribution functions are continuous.
 
- 
-
-kolomogorov smirnov test 
+For this experiment we will depart from the ages of runners and compare their finishing times instead. The first comparison is of times between genders:
 
 \begin{Verbatim}
-> ks.test(
-+     normalTimes[normalGenders == 'M'], 
-+     pnorm, 
-+     mean(normalTimes[normalGenders == 'M']), 
-+     sd(normalTimes[normalGenders == 'M']))
+> ks.test(allTimes[genders == 'M'], allTimes[genders == 'F'])
+
+Two-sample Kolmogorov-Smirnov test
+
+data:  allTimes[genders == "M"] and allTimes[genders == "F"]
+D = 0.19616, p-value < 2.2e-16
+alternative hypothesis: two-sided
+\end{Verbatim}
+
+The \hbox{p-value} is very close to zero meaning that it is very unlikely the finishing times for ladies and gents were drawn from the same distribution. Tests presented in the following sections which compare the means and variances of two groups assume that the data is distributed normally. If we would like to have meaningful results, we need to ensure that the finishing times of both genders are normally distributed. The Kolmogorov Smirnov test can be used to check this assumption:
+
+\begin{Verbatim}
+> ks.test(allTimes[genders == 'M'],
++     pnorm,
++     mean(allTimes[genders == 'M']),
++     sd(allTimes[genders == 'M']))
 
 One-sample Kolmogorov-Smirnov test
 
-data:  normalTimes[normalGenders == "M"]
-D = 0.010672, p-value = 0.7291
+data:  allTimes[genders == "M"]
+D = 0.046776, p-value = 2.368e-08
 alternative hypothesis: two-sided
+\end{Verbatim}
+
+In this case too the \hbox{p-value} is quite small -- certainly far smaller than the usually accepted significance threshold of 0.05. This puts us in an awkward situation which is encountered frequently in data analysis: we would like to perform some tests but our data violates the basic assumptions made be the methods. If we cannot model the data with a function, all methods based on functional analysis of probability distribution functions are meaningless. One way around this limitation is to use so called non-parametric tests which don't rely on integrating and differentiating functions. An example of a non-parametric method for comparing the means of two groups are the box plot notches presented in the previous chapter.
+
+In this chapter however a cheat is introduced which helps get around the non-normal distribution of finishing times. Instead of using the original data, we will use the estimates for mean and variance to generate data which we are certain is normally distributed. The function {\em rnorm} in R can be used to simulate normally distributed data of any size given a value for mean and standard deviation. The following call will return an array of simulated finishing times which are distributed normally:
+
+\begin{Verbatim}
+> rnorm(
++     length(allTimes[genders == 'M']), 
++     mean(allTimes[genders == 'M']), 
++     sd(allTimes[genders == 'M']))
 \end{Verbatim}
 
 \section{Comparing Means}
