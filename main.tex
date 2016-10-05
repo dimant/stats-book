@@ -735,6 +735,8 @@ In this chapter however a cheat is introduced which helps get around the non-nor
 \end{Verbatim}
 
 \section{Comparing Means}
+Now that it is ensured the distributions of finishing times are normally distributed we can turn to analytical methods of comparing parameters. First, we will compare the mean finishing time for male and female runners. 
+
 t-test
 \begin{Verbatim}
 > t.test(
@@ -760,7 +762,7 @@ mean of x mean of y
 Analysis of Variance Table
 
 Response: normalTimes
-Df     Sum Sq    Mean Sq F value    Pr(>F)    
+                Df     Sum Sq    Mean Sq F value    Pr(>F)    
 normalGenders    1 2.9172e+09 2917174891  296.49 < 2.2e-16 ***
 Residuals     6332 6.2301e+10    9839009                      
 ---
