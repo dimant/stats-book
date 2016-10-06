@@ -185,7 +185,9 @@ It is not knowledge, but the act of learning, not possession but the act of gett
 
 \mainmatter
 
-\chapter{Types of Data}
+
+\chapter{Introduction}
+In any sufficiently complicated system you will find processes the outcome of which appears to be random. For our purposes randomness is when there seems to be some connection between an action and outcome however the outcome cannot be easily guessed in advance. An immediate example for such a process is gambling. If you have a suspicion that someone is rolling an unfair die, using math to determine if your suspicion is founded or if you're just a sore loser is what we call statistics.
 
 \section{The Marathon Data}
 \begin{figure}
@@ -225,22 +227,9 @@ model
 
 \chapter{Expectation and Surprise}
 \label{ch:expectation-surprise}
-types of questions
-
-finding order in randomness
-randomness is when you can't figure out what causes or influences a certain outcome
-
-when you can't figure out a precise answer, you have to guess. statistics brings a 
-systematic approach to guessing. 
-
-collecting data
-
-analyzing data
-variability
-
+On an average day in California, we expect that the sun is shining. If it rains, I would be very surprised. The concepts of expectation and surprise can be measured. In statistics we say that the center of observed data is near our expectation. That is, the most frequently observed value is the one we expect. Surprise on the other hand is the spread of data -- a measure for how often we observed data which fell far from the center.
 
 \section{Center}
-
 Suppose someone asked the contrived question: ``How old are Alex, Ben and Charlie?'' You are expected to reply with a single number in such a way that you are as close as possible to the individual ages of Alex, Ben and Charlie. If you guess $\bar{X}$, the terms $\bar{X} - Alex$, $\bar{X} - Ben$ and $\bar{X} - Charlie$ should be as small as possible.
 
 The difference between $\bar{X}$ and the age of a person is called an estimate error. Other names for this value are {\em residual} or also {\em deviation}. When guessing $\bar{X}$, we would like the sum of errors to minimal. Note that when calculating the sum, it is helpful if all values are positive. If this were not the case, $\bar{X} - 45$ and $\bar{X} - 55$ would cancel each other out instead of add up for $\bar{X} = 50$. The simplest way to make all deviations positive is to take their absolute value. If the observed age is written as $x_i$ and the guessed age as $\bar{X}$ the sum of absolute errors is calculated as shown in equation \ref{formula:sae}.
@@ -737,7 +726,10 @@ In this chapter however a cheat is introduced which helps get around the non-nor
 \section{Comparing Means}
 Now that it is ensured the distributions of finishing times are normally distributed we can turn to analytical methods of comparing parameters. First, we will compare the mean finishing time for male and female runners. 
 
-t-test
+A very frequently used statistical test for comparing the means of two groups is Student's \hbox{t-test}\cite{student1908}. The test is over 100 years old dating back to 1908 and has an interesting back story. The author's name is not actually Student but William Gausset. He studied chemistry and mathematics at Oxford and as a top graduate in both was offered to work for the Guiness brewery. While working there William developed this test to monitor the quality of stout -- presumably Guiness. In 1908, much like today, his work was technically owned by Guiness which is why he published under the pseudonym Student (not to be confused with the word ``student''). For one reason or another Guiness didn't go after him with the full might of their legal department and a hundred years later we are still using the Student's \hbox{t-test}.
+
+The \hbox{t-test} is part of the core R functionality. We can compare the mean finishing times of runners as follows:
+
 \begin{Verbatim}
 > t.test(
 +     normalTimes[normalGenders == 'M'], 
@@ -756,6 +748,10 @@ mean of x mean of y
 16478.7   17909.8 
 \end{Verbatim}
 
+Note that we are comparing the means of simulated data because our original data is not normally distributed. This is an issue Gausset discusses on the very first page of his seminal paper. He argues that if we have a large amount of data available we can perform precise calculations rendering the limitation of needing a normal distribution moot. If however the sample size is small, as is often the case in micro-biological fields such as a brewery, the assumption that the data was drawn from a normal distribution is a guess that is more reasonable than many. 
+
+Occasionally you may need to compare the means of more than two groups. In those cases there are two options: either perform pair-wise t-tests between all groups or opt for an analysis of variance (ANOVA) test. An analysis of the variance of two groups is equivalent to a t-test and can be computed in R as:
+
 \begin{Verbatim}
 > fit <- lm(formula = normalTimes ~ normalGenders)
 > anova(fit)
@@ -769,10 +765,8 @@ Residuals     6332 6.2301e+10    9839009
 Signif. codes:  0 `***' 0.001 `**' 0.01 `*' 0.05 `.' 0.1 ` ' 1
 \end{Verbatim}
 
-medians
+The first step of the analysis is fitting a model which explains the finishing times as a linear function of gender. Linear models and analysis of variance are topics which warrant a chapter of their own (possibly in a future text) which is why we only gloss over them here. In closing, let's use another F-test to compare the variances of finishing times:
 
-
-\section{Comparing Variance}
 \begin{Verbatim}
 > var.test(
 +     normalTimes[normalGenders == 'M'], 
@@ -790,6 +784,8 @@ sample estimates:
 ratio of variances 
 1.103092 
 \end{Verbatim}
+
+The p-value returned by this test is beneath the significance threshold of 0.05 and we conclude that the variance of both groups are different.
 
 \section{Generalization}
 comparing quantiles
