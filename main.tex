@@ -788,8 +788,91 @@ ratio of variances
 The p-value returned by this test is beneath the significance threshold of 0.05 and we conclude that the variance of both groups are different.
 
 \section{Generalization}
-comparing quantiles
-$chi^2$ test
+A number by itself means little. Unless you know how long it would take you and your friend to run a marathon, it would mean little to you that a runner in the San Francisco 2016 marathon completed the race in just over 2 hours and 30 minutes. Only when you compare this runner's performance to all others will you know that he finished first. To make this conclusion we took one number and compared it to all others within the data. Statistics however starts to really shine when you begin comparing your numbers to things outside your experiment. For example the world records for marathon are currently around 2 hours and 3 minutes which makes the San Francisco winner look slow in comparison.
+
+\begin{figure}
+	\centering
+	\includegraphics[trim={1.8cm 1cm 3.5cm 1cm}]{graphics/barplot-ages-usa-marathon}
+	\label{img:ages-usa-marathon}
+	\caption{Demographics comparison between USA and Marathon runners.}
+\end{figure}
+
+A comparison with the outside world can be made not only for single numbers but also for the distribution of data. Are different age groups in the USA represented equally in the marathon? Figure \ref{img:ages-usa-marathon} gives an initial insight towards answering this question. Often to put your data in a larger context you will need to look for experiments similar to yours. International and national governmental organizations are excellent sources of such data. 
+
+For example to answer the question of age group distribution data was used which is collected by the CIA for all countries in the world\footnote{\url{https://www.cia.gov/library/publications/the-world-factbook/fields/2018.html}}. Examples for other trustworthy sources of information are the World Health Organization (WHO), various branches of the United Nations (UN), the World Bank Group, the Program for International Student Assessment (PISA) and many others. You should be suspicious whenever statistics are published by for profit organizations such as news agencies, pharmaceutical corporations or private financial institutions.
+
+Returning from the political facet of statistics back to figure \ref{img:ages-usa-marathon} we can see that the group of 25 to 54 year olds is over-represented by a factor of 2 at the expense of all other groups. This finding however is subjective as it is based on looking at a picture as opposed to mathematical argument. The keen reader may bring up that the Kolmogorov Smirnov test presented in an earlier section might be used to compare the distribution of ages for the USA and marathon runners. Unfortunately the CIA provides information about age groups in the United States by splitting the range of ages into bins. From this type of information we cannot estimate a continuous distribution function which is a strict requirement of the test.
+
+A statistical test designed to compare discrete (or discretized) distribution functions is the $\chi^2$ test. If you have two groups of data, you can split their numeric range into a number of bins. The $\chi^2$ can then be used to determine if the difference in number of observations falling into each bin between both groups of data is significant. In very general terms, the squared differences are examined and added in such a way that the result is a number which is drawn from a $\chi^2$ distribution -- hence the name of this test. To compare the age groups of the USA with those of marathon runners we can use R:
+
+\begin{Verbatim}
+> chisq.test(comparisonAgeGroups)
+
+Pearson's Chi-squared test
+
+data:  comparisonAgeGroups
+X-squared = 3130.7, df = 4, p-value < 2.2e-16
+\end{Verbatim}
+
+The function returns three values: a value for the $\chi^2$ test statistic, the degrees of freedom and a \hbox{p-value}. As we already know, the \hbox{p-value} is the probability of observing the value 3130.7 in a $\chi^2$ distribution with 4 degrees of freedom. This probability is very low which is why $H_0$ that both distributions are the same is rejected.
+
+A newly introduced concept are degrees of freedom. You can treat this as a parameter of the $\chi^2$ distribution which is equal to $n_{bins} - 1$ and not think further of it. If you continue to read about statistics, you will encounter degrees of freedom often which is why it is helpful to have a deeper understanding of this parameter. The number of degrees of freedom is a property of a vector which tells us in how many ways it can be changed. For example the vector 
+
+\begin{equation}
+\left(
+\begin{array}{c}
+X_1 \\
+X_2 \\
+X_3 
+\end{array}
+\right)
+\end{equation}
+
+can be changed in three ways: along $X_1$, $X_2$ and $X_3$ which is why it has 3 degrees of freedom. With $\bar{X}$ being the sample mean this vector can be decomposed as:
+
+\begin{equation}
+\left(
+\begin{array}{c}
+X_1 \\
+X_2 \\
+X_3 
+\end{array}
+\right)
+=
+\bar{X}
+\left(
+\begin{array}{c}
+1 \\
+1 \\
+1 
+\end{array}
+\right)
++
+\left(
+\begin{array}{c}
+X_1 - \bar{X} \\
+X_2 - \bar{X} \\
+X_3 - \bar{X} 
+\end{array}
+\right)
+\label{formula:decomposition}
+\end{equation}
+
+The vector on the left side of the $=$ in equation \ref{formula:decomposition} still has 3 degrees of freedom. The first vector on the right hand side of the equation is defined to be a multiple of the vector $(1 1 1)$. It can only change in its length which is why it only has 1 degree of freedom. To understand the degrees of freedom of the last vector bring to mind that $\bar{X}$ is a function of all $X_i$:
+
+\begin{equation}
+\bar{X} = \frac{\sum_{i = 0}^n X_i}{n}
+\end{equation}
+
+if we set the equation to zero and multiply both sides by $n$ we get the equivalent form:
+
+\begin{equation}
+\sum_{i = 0}^n X_i - \bar{X} = 0
+\label{formula:constraint}
+\end{equation}
+
+How many $X_i$ can be changed without violating equation \ref{formula:constraint}? The first $n-1$ can be varied freely however once they are fixed, the last component must be chosen in such a way that it cancels the sum out to 0. In other words, the last vector in equation \ref{formula:decomposition} has 2 degrees of freedom. As to the $\chi^2$ test statistic, without going into too much detail, the reason for its degrees of freedom is that we are comparing $n$ bins equating to $n$ ways the statistic can move however they are compared as ratios of the total number of observations. Calculating the total predetermines one degree of freedom.
+
 
 
 \backmatter
