@@ -190,6 +190,8 @@ It is not knowledge, but the act of learning, not possession but the act of gett
 In any sufficiently complicated system you will find processes the outcome of which appears to be random. For our purposes randomness is when there seems to be some connection between an action and outcome however the outcome cannot be easily guessed in advance. An immediate example for such a process is gambling. If you have a suspicion that someone is rolling an unfair die, using math to determine if your suspicion is founded or if you're just a sore loser is what we call statistics.
 
 \section{The Marathon Data}
+All concepts introduced in these lecture notes are illustrated by example. To demonstrate how different concepts can be applied and used, we will ask questions about the 2016 San Francisco marathon. We will look for answers in the marathon results which can be found on the event's website\footnote{\url{http://www.thesfmarathon.com/race-results-and-photos/}}. The result data gives us more than just the finishing times for each runner. All variables in the data are listed and explained in figure \ref{tab:marathon-data}.
+
 \begin{figure}
 	\centering
 	\begin{tabular} { l | l | c }
@@ -210,20 +212,15 @@ In any sufficiently complicated system you will find processes the outcome of wh
 	\caption{Description of the marathon data.}
 \end{figure}
 
+Already two statistical concepts have been introduced: variables and data. It is helpful to think of a variable as a column of data. The finishing place of marathon runners is one such variable. Note that the 11 variables in our data are very different: the finishing place is a number, the location of runners is a city and state, the age grade is a percentage and so on. There are various ways to classify types of variables:
 
-types of data
-several ways to classify but roughly
-nominal - sex, bib number
+\begin{description}
+	\item[nominal] everything which is not a number (e.g. male / female)
+	\item[ordinal] numbers which can be ordered but have no significance beyond this (e.g. place)
+	\item[numerical] numbers in the mathematical sense
+\end{description}
 
-ordinal - age group, place
-numeric - age
-continuous - net / gun time, age grade
-
-several ways to describe data:
-single number
-summary table
-graph
-model
+This list will vary depending on the textbook and professor. Ultimately it is not a list of things to be memorized but a tool to convey that different types of variables are treated in very different ways. It makes very little sense to calculate the arithmetic mean of male and female runners just like it makes no sense to calculate the ratio of finishing place 3333 versus all other places. In this text we will focus on numerical types data using nominal variables mainly to split the data into separate groups.
 
 \chapter{Expectation and Surprise}
 \label{ch:expectation-surprise}
@@ -814,7 +811,7 @@ data:  comparisonAgeGroups
 X-squared = 3130.7, df = 4, p-value < 2.2e-16
 \end{Verbatim}
 
-The function returns three values: a value for the $\chi^2$ test statistic, the degrees of freedom and a \hbox{p-value}. As we already know, the \hbox{p-value} is the probability of observing the value 3130.7 in a $\chi^2$ distribution with 4 degrees of freedom. This probability is very low which is why $H_0$ that both distributions are the same is rejected.
+The function returns three values: a value for the $\chi^2$ test statistic, the degrees of freedom and a \hbox{p-value}. As we already know, the \hbox{p-value} is the probability of observing the value 3130.7 in a $\chi^2$ distribution with 4 degrees of freedom. This probability is very low which is why $H_0$ that both distributions are the same is rejected. Note that here is where the statistical analysis ends. We are very certain that the ratios of age groups in the marathon data are not representative of the United States. This confidence tells us nothing as to the why there is a difference or even what it might mean. 
 
 A newly introduced concept are degrees of freedom. You can treat this as a parameter of the $\chi^2$ distribution which is equal to $n_{bins} - 1$ and not think further of it. If you continue to read about statistics, you will encounter degrees of freedom often which is why it is helpful to have a deeper understanding of this parameter. The number of degrees of freedom is a property of a vector which tells us in how many ways it can be changed. For example the vector 
 
