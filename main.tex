@@ -187,10 +187,10 @@ It is not knowledge, but the act of learning, not possession but the act of gett
 
 
 \chapter{Introduction}
-In any sufficiently complicated system you will find processes the outcome of which appears to be random. For our purposes randomness is when there seems to be some connection between an action and outcome however the outcome cannot be easily guessed in advance. An immediate example for such a process is gambling. If you have a suspicion that someone is rolling an unfair die, using math to determine if your suspicion is founded or if you're just a sore loser is what we call statistics.
+In any sufficiently complicated system you will find processes the outcome of which appears to be random. For our purposes randomness is when there seems to be some connection between an action and outcome. At the same time it is difficult to guess the outcome in advance. An immediate example for such a process is gambling. If you have a suspicion that someone is rolling an unfair die, using math to determine if your suspicion is founded or if you're just a sore loser is what we call statistics.
 
 \section{The Marathon Data}
-All concepts introduced in these lecture notes are illustrated by example. To demonstrate how different concepts can be applied and used, we will ask questions about the 2016 San Francisco marathon. We will look for answers in the marathon results which can be found on the event's website\footnote{\url{http://www.thesfmarathon.com/race-results-and-photos/}}. The result data gives us more than just the finishing times for each runner. All variables in the data are listed and explained in figure \ref{tab:marathon-data}.
+All concepts introduced in these lecture notes are illustrated by example. To demonstrate how different concepts can be applied and used, we will ask questions about the 2016 San Francisco marathon. We will look for answers in the marathon results which can be found on the event's website\footnote{\url{http://www.thesfmarathon.com/race-results-and-photos/}}. The result data give us more than just the finishing times for each runner. All variables in the data are listed and explained in figure \ref{tab:marathon-data}.
 
 \begin{figure}
 	\centering
@@ -220,24 +220,24 @@ Already two statistical concepts have been introduced: variables and data. It is
 	\item[numerical] numbers in the mathematical sense
 \end{description}
 
-This list will vary depending on the textbook and professor. Ultimately it is not a list of things to be memorized but a tool to convey that different types of variables are treated in very different ways. It makes very little sense to calculate the arithmetic mean of male and female runners just like it makes no sense to calculate the ratio of finishing place 3333 versus all other places. In this text we will focus on numerical types data using nominal variables mainly to split the data into separate groups.
+This list will vary depending on the textbook and professor. Ultimately it is not a list of things to be memorized but a tool to convey that different types of variables are treated in very different ways. It makes very little sense to calculate the arithmetic mean of male and female runners just like it makes no sense to calculate the ratio of finishing place 3333 versus all other places. In this text we will focus on numerical types. We will use nominal variables mainly to split data into separate groups.
 
 \chapter{Expectation and Surprise}
 \label{ch:expectation-surprise}
-On an average day in California, we expect that the sun is shining. If it rains, I would be very surprised. The concepts of expectation and surprise can be measured. In statistics we say that the center of observed data is near our expectation. That is, the most frequently observed value is the one we expect. Surprise on the other hand is the spread of data -- a measure for how often we observed data which fell far from the center.
+On an average day in California, we expect the sun to shine. If it rains, I would be very surprised. The concepts of expectation and surprise can be measured. In statistics we say that the center of observed data is near our expectation. That is, the most frequently observed value is the one we expect. Surprise on the other hand is the spread of data -- a measure for how often we observed data which fell far from the center.
 
 \section{Center}
 Suppose someone asked the contrived question: ``How old are Alex, Ben and Charlie?'' You are expected to reply with a single number in such a way that you are as close as possible to the individual ages of Alex, Ben and Charlie. If you guess $\bar{X}$, the terms $\bar{X} - Alex$, $\bar{X} - Ben$ and $\bar{X} - Charlie$ should be as small as possible.
 
-The difference between $\bar{X}$ and the age of a person is called an estimate error. Other names for this value are {\em residual} or also {\em deviation}. When guessing $\bar{X}$, we would like the sum of errors to minimal. Note that when calculating the sum, it is helpful if all values are positive. If this were not the case, $\bar{X} - 45$ and $\bar{X} - 55$ would cancel each other out instead of add up for $\bar{X} = 50$. The simplest way to make all deviations positive is to take their absolute value. If the observed age is written as $x_i$ and the guessed age as $\bar{X}$ the sum of absolute errors is calculated as shown in equation \ref{formula:sae}.
+The difference between $\bar{X}$ and the age of a person is called an estimate error. Other names for this value are {\em residual} or also {\em deviation}. When guessing $\bar{X}$, we would like the sum of errors to minimal. Note that when calculating the sum, it is helpful if all values are positive. If this were not the case, $\bar{X} - 45$ and $\bar{X} - 55$ would cancel each other out instead of add up for $\bar{X} = 50$. The simplest way to make all deviations positive is to take their absolute value. If the observed age is written as $x_i$ and the guessed age as $\bar{X}$, the sum of absolute errors is calculated as shown in equation \ref{formula:sae}:
 
 \begin{equation} \label{formula:sae}
 	SAE = \sum_{i=1}^n |\bar{X} - x_i|
 \end{equation}
 
-A number which minimizes all errors can be useful if you are dealing with a large number of Alex, Ben and Charlies. For example, I could ask you to estimate someones age and the only clue I give you is that they participated in the 2016 San Francisco marathon. If you had a number $\bar{X}$ for all marathon participants, you could just guess $\bar{X}$ and be sure that you will be reasonably close to their real age. In other words: you {\em expect} that the age of a marathon participant $\bar{X}$.
+A number which minimizes all errors can be useful if you are dealing with a large number of Alex, Ben and Charlies. For example, I could ask you to estimate someones age and the only clue I give you is that they participated in the 2016 San Francisco marathon. If you had a number $\bar{X}$ for all marathon participants, you could just guess $\bar{X}$ and be sure that you will be reasonably close to their real age. In other words: you {\em expect} that the age of a marathon participant to be $\bar{X}$.
 
-If the ages of all participants are sorted in ascending order, it is reasonable to expect that there will be a clump of folks around an imaginary age $\bar{X}$. Some folks will be a lot younger than $\bar{X}$ and some older. Watching marathon competitions on TV, the best runners seem to be around the same age which could lead us to believe that there is an optimal age for the sport. Therefor it might be reasonable to expect that very young and old participants are fewer. 
+If the ages of all participants are sorted in ascending order, it is reasonable to expect that there will be a clump of folks around an imaginary age $\bar{X}$. Some folks will be a lot younger than $\bar{X}$ and some older. Since marathon running is a very demanding sport, it might be reasonable to expect few very young or old participants.
 
 \begin{figure}
 	\centering
@@ -246,7 +246,7 @@ If the ages of all participants are sorted in ascending order, it is reasonable 
 	\caption{Probability distribution.}
 \end{figure}
 
-With this expectation there ought to be a clump of ages around the center of data and that tails ought to be thinning out. An intuitive way to form this expectation is to visualize the distribution of ages on a graph similar to the one in figure \ref{img:distribution}. On this graph, as you go right on the horizontal axis, the height of people increases. The curve shows what percentage of participants have a given age $x_1$. For example, as you go left on the $x$ axis, towards zero, the values of $p$ are also small. If you head too far to the right, $p$ will also be small matching our expectation that there are fewer older people. The highest point in this case happens to be the {\em center} of mass for the area under the curve. 
+Assuming the above expectation there ought to be a clump of ages around the center of data and the tails ought to be thinning out. An intuitive way to form this expectation is to visualize the distribution of ages on a graph similar to the one in figure \ref{img:distribution}. On this graph, as you go right on the horizontal axis, the height of people increases. The curve shows what percentage of participants have a given age $x_1$. For example, as you go left on the $x$ axis, towards zero, the values of $p$ are small. If you head too far to the right, $p$ will also be small matching our expectation that there are fewer older people. The highest point in this case happens to be the {\em center} of mass for the area under the curve. 
 
 \begin{tcolorbox}
 	In this text the function in figure \ref{img:distribution} is called a ``probability distribution function''. Note that elsewhere you may encounter this function being called a ``probability density function''. Adding to the confusion, they may use the term ``probability distribution function'' to refer to what I wold call a ``cumulative distribution function''. Always double-check how an author is using terminology.
@@ -265,7 +265,7 @@ Typically the center of mass for a data is  denoted as $\mu$ and is also called 
 	A recurring theme in this text is identifying numbers which exist in nature but cannot be observed directly, such as $\mu$, and find ways to estimate them. While there are many approaches to this end, we will estimate values by drawing conclusions from observed data.
 \end{tcolorbox}
 
-When trying to calculate $\bar{X}$ it helps to remember that the ultimate goal is to reduce the sum of errors. Let's say there is a group of 100 people: 99 of them are 45 years old and 1 is 30 years old. Note that for $\bar{X} = 45$ the sum of absolute errors would be $45 - 30 = 15$ while for $\bar{X} = 30$ it would be $(45 - 30) \times 99 = 1485$. It seems like the sum of errors is smaller when $\bar{X}$ is closer to the biggest clump of numbers in the data.
+When trying to calculate $\bar{X}$, it helps to remember that the ultimate goal is to reduce the sum of errors. Let's say there is a group of 100 people: 99 of them are 45 years old and 1 is 30 years old. Note that for $\bar{X} = 45$ the sum of absolute errors would be $45 - 30 = 15$ while for $\bar{X} = 30$ it would be $(45 - 30) \times 99 = 1485$. It seems like the sum of errors is smaller when $\bar{X}$ is closer to the biggest clump of numbers in the data.
 
 A function which estimates $\bar{X}$ by having the largest clump of numbers pull $\bar{X}$ towards itself the strongest is the arithmetic mean:
 
@@ -323,7 +323,7 @@ A drawback of the median as an estimate of centrality is that it does not have a
 
 In the previous section we touched upon a type of spread. The group of 100 people of who 99 are 45 years old, contains one chap who is 30. Within this group, the 30 year old can be considered an outlier. An observation can be labeled as being an outlier for various reasons. One example in the marathon data is the runner with number 184 who is oldest at 81 years of age. There are various ways to define which values we consider outliers but ultimately in spirit they try to capture the same thing: outliers are values so extreme we are very surprised to see them in the data.
 
-If there is an expected value $\mu$ and if values which are very unexpected exist as well, there must be some spectrum of surprise between the two. Intuitively values which are close to our estimate of $\mu$ would be less surprising than values which are far away. A measure which is but a step away from the SSE notion of error (see equation \ref{formula:sse}) is variance (see figure \ref{formula:variance}). 
+If there is an expected value $\mu$ and if values which are very unexpected exist as well, there must be some spectrum of surprise between the two. Intuitively values which are close to our estimate of $\mu$ would be less surprising than values which are far away. A measure which is but a step away from the SSE notion of error (see equation \ref{formula:sse}) is variance: 
 
 \begin{equation} \label{formula:variance}
 	s_x^2 = \frac{1}{n} \sum_{i=i}^{n} (x_i - \bar{x})^2
@@ -369,9 +369,9 @@ Both, variance and standard deviation are available in the R programming languag
 [1] 11.0316
 \end{Verbatim}
 
-The standard deviation estimator presented in equation \ref{formula:standard-deviation} is highly susceptible to being biased by outliers. This is because the estimation is based on the SSE as shown in equation \ref{formula:sse}. Similarly to how the median is a robust estimator of $\mu$, the inter quartile range (IQR) is a robust estimator of $\sigma$. A is 25\% of the data. To calculate the IQR, we sort the data in ascending order and split it into 4 groups, each containing an equal number of observations. For the contrived example of a 100 people 99 of who are 45 years old and one who is 30, this would mean we end up 4 quarters. The bottom quarter has 25 values: $35, 45, ..., 45$ and the top quarter also has 25 values which are $45,...,45$. The top and bottom quarters sandwich the remaining 50 observations. To calculate the IQR, take the largest value of the smallest quarter and subtract it from the smallest value of the largest quarter: $45 - 45 = 0$. In comparison, the standard deviation for the ages of the same group of people is $1.5$.
+The standard deviation estimator presented in equation \ref{formula:standard-deviation} is highly susceptible to being biased by outliers. This is because the estimation is based on the SSE as shown in equation \ref{formula:sse}. Similarly to how the median is a robust estimator of $\mu$, the inter quartile range (IQR) is a robust estimator of $\sigma$. To calculate the IQR, we sort the data in ascending order and split it into 4 groups, each containing an equal number of observations. For the contrived example of a 100 people 99 of who are 45 years old and one who is 30, this would mean we end up 4 quarters. The bottom quarter has 25 values: $35, 45, ..., 45$ and the top quarter also has 25 values which are $45,...,45$. The top and bottom quarters sandwich the remaining 50 observations. To calculate the IQR, take the largest value of the smallest quarter and subtract it from the smallest value of the largest quarter: $45 - 45 = 0$. In comparison, the standard deviation for the ages of the same group of people is $1.5$.
 
-There is no built in function to calculate the IQR in the R programming language. Instead, first we use the built in function to find out the values at the minimum, 25\%, 50\%, 75\% and maximum of the data. Once we have the result, we can subtract the value at the 25\% split from the value at the 75\% split:
+There is no built in {\em quantile} function to calculate the IQR in the R programming language. Instead, first we use the built in function to find out the values at the minimum, 25\%, 50\%, 75\% and maximum of the data. Once we have the result, we can subtract the value at the 25\% split from the value at the 75\% split:
 
 \begin{Verbatim}
 > quantile(ages, probs = c(0, 0.25, 0.5, 0.75, 1))
@@ -403,9 +403,9 @@ In its simplified version, the Gaussian distribution can be written as the funct
 	\caption{Normal distribution with mean 0 and standard deviation 1.}
 \end{figure}
 
-For the purposes of this text it is sufficient to remember the basic properties of the Gaussian distribution. It is a mathematical function of 2 parameters: $\sigma$, $\mu$. When $\sigma = 1$ and $\mu = 0$ we call the resulting function of $x$ a standard normal distribution. A plot which shows how $P(x)$ varies as $x$ changes is shown in figure \ref{img:plot-normal}. 
+For the purposes of this text it is sufficient to remember the basic properties of the Gaussian distribution. It is a mathematical function of 2 parameters: $\mu$ and $\sigma$. When $\mu = 0$ and $\sigma = 1$ we call the resulting function of $x$ a standard normal distribution. A plot which shows how $P(x)$ varies as $x$ changes is shown in figure \ref{img:plot-normal}. 
 
-If different values are plugged in for $\mu$ and $\sigma$, the shape of the curve will change. By changing $\mu$, the curve can be moved left or right. If $\sigma$ is changed, the bell can be made wider and narrower. We say write: $X \thicksim N(\mu, \sigma)$ and we say that the random variable $X$ is normally distributed with mean $\mu$ and standard deviation $\sigma$. For example we can use our estimates for mean and standard deviation of ages in the marathon data: $36.98$ and $11.03$ respectively. Such a plot can be drawn using R:
+If different values are plugged in for $\mu$ and $\sigma$, the shape of the curve will change. By changing $\mu$, the curve can be moved left or right. If $\sigma$ is changed, the bell can be made wider and narrower. We write: $X \thicksim N(\mu, \sigma)$ and we say that the random variable $X$ is normally distributed with mean $\mu$ and standard deviation $\sigma$. We can use our estimates for mean and standard deviation of ages in the marathon data: $36.98$ and $11.03$ respectively. With these parameters a plot can be drawn using R:
 
 \begin{Verbatim}
 > curve(dnorm(x, mean(ages), sd(ages)), from=0, to=80)
@@ -442,18 +442,18 @@ With this understanding it may be easier to grasp the measure for skewness shown
 	{\Big[\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2\Big]^{3/2}}
 \end{equation}
 
-Skewness is not built into the R language, however as is often the case, it can be added by installing an additional R package. I have used the package ``e1071'' and calculated the skewness of ages in the marathon data as:
+Skewness is not built into the R language, however as is often the case, it can be added by installing an additional R package. I have used the package {\em e1071} and calculated the skewness of ages in the marathon data as:
 
 \begin{Verbatim}
 > skewness(ages)
 [1] 0.5876703
 \end{Verbatim}
 
-The positive value suggests that the data is leaning to the left meaning that there are more younger runners than older runners. This result is a first hint that the data may not be normally distributed. Whether it can be modeled with a normal distribution depends on how strongly it deviates from the bell curve.
+The positive value suggests that the data is leaning to the left meaning that there are more younger runners than older runners. This result is a first hint that the data might not be normally distributed. Whether it can be modeled with a normal distribution depends on how strongly it deviates from the bell curve.
 
-Note that the error term is raised to the third power which makes the statistic even more sensitive to outliers than variance. A robust version of the estimate for skewness exists and is called medcouple\cite{Brys2004}. It is however too complex to cover here.
+Note that the error term is raised to the third power which makes the statistic even more sensitive to outliers than variance. While a robust version of the estimate for skewness called medcouple\cite{Brys2004} exists, it is  too complex to cover here.
 
-Very briefly and for the sake of completeness the fourth central moment is covered: kurtosis. The measure for kurtosis in equation \ref{formula:kurtosis} is a ratio between the fourth and second central moments. Note that $m_2$ is already squared so raising it to the second power brings it onto the same scale as $m_4$. Intuitively speaking, kurtosis is a measure for how pointy the bell curve is. A positive value indicates that the point is sharper than that of the normal distribution and a negative value indicates a flatter top.
+Very briefly and for the sake of completeness the fourth central moment is covered: kurtosis. The measure for kurtosis in equation \ref{formula:kurtosis} is a ratio between the fourth and second central moments. Note that $m_2$ is already squared so raising it to the second power brings it onto the same scale as $m_4$. Intuitively speaking, kurtosis is a measure for how pointy the bell curve is. A positive value indicates that the apex is sharper than that of the normal distribution and a negative value indicates a flatter top.
 
 \begin{equation} \label{formula:kurtosis}
 	g_2 = \frac{m_4}{m_2^{2}} = 
@@ -461,7 +461,7 @@ Very briefly and for the sake of completeness the fourth central moment is cover
 	{\Big[\frac{1}{n}\sum_{i=1}^{n}(x_i - \bar{x})^2\Big]^{2}}
 \end{equation}
 
-Using the R package ``e1071'' the kurtosis of ages in the marathon data can be calculated as:
+Using the R package {\em e1071} the kurtosis of ages in the marathon data can be calculated as:
 
 \begin{Verbatim}
 > kurtosis(ages)
@@ -531,7 +531,7 @@ A close cousin of the bar plot is the histogram. While bar plots and histograms 
 	\caption{Histogram of ages.}
 \end{figure}
 
-To create a histogram scale of the data is split into equally sized bins. A bar is drawn which corresponds to each of the bins. Taller bars express that more observations fall into the bin. Figure \ref{img:histogram-ages-10bins} shows a histogram of ages in the marathon data. In this graph we can finally see the shape which we have been trying to infer with summary statistics in the previous chapter. While the level of detail is fairly crude, it can be seen that the center lies somewhere between 20 and 40. The corresponding summary statistics were the mean at 36.98 and the median at 35. It is also visible that the ``bell'' is not symmetrical. On the left side is a steep cliff while the right side is a gentle walk down -- this reflects the skewness value of 0.58.
+To create a histogram the data is split into equally sized bins. A bar is drawn which corresponds to each of the bins. Taller bars express that more observations fall into the bin. Figure \ref{img:histogram-ages-10bins} shows a histogram of ages in the marathon data. In this graph we can finally see the shape which we have been trying to infer with summary statistics in the previous chapter. While the level of detail is fairly crude, it can be seen that the center lies somewhere between 20 and 40. The corresponding summary statistics were the mean at 36.98 and the median at 35. It is also visible that the ``bell'' is not symmetrical. On the left side is a steep cliff while the right side is a gentle walk down -- this reflects the skewness value of 0.58.
 
 \begin{figure}
 	\centering
@@ -543,7 +543,7 @@ To create a histogram scale of the data is split into equally sized bins. A bar 
 The difficulty with histograms is choosing the right number and size of bins into which to split the data. Using too few bins would obscure patterns in the data. Choosing a number of bins that is too large on the other hand would reveal detail which is due to variation in the data and is not systematic. Figure \ref{img:histogram-ages-allbins} shows three different histograms of the same data (ages of marathon runners) split into 5, 10 and 100 bins. The 5 bin histogram treats 5 to 20 year olds the same. When using 10 bins, it becomes clear that thankfully there were no runners under 10 years of age. If the data is split into 100 bins however, a lone 0 year old runner appears on the left side of the graph. This is not a super-human toddler but simply a runner who's age was not recorded for some reason.
 
 \section{Box Plot}
-Box plots\cite{tukey1977}, sometimes called box and whiskers plots, were invented by John Tukey. Coincidentally, he is also said to have coined the term ``bit'' as measure for information. 
+Box plots\cite{tukey1977}, sometimes called box and whiskers plots, were invented by John Tukey. Coincidentally, he is also said to have coined the term ``bit'' (short for binary digit) as measure for information. 
 
 \begin{figure}
 	\centering
@@ -552,9 +552,9 @@ Box plots\cite{tukey1977}, sometimes called box and whiskers plots, were invente
 	\caption{Box plot comparing the age of runners between genders.}
 \end{figure}
 
-Figure \ref{img:boxplot-age-gender} shows two box plots which compare the age of runners between the genders. This is in essence a graphical representation of robust measures for centrality. The bottom and top edge of the box correspond to the IQR -- 50\% of data are in the box. Across the box is a line which shows the median. Up and down of the box stretch a pair of whiskers which depict the range of values which covers 90\% of data. In this framework, data in the top or 5\% are considered outliers.
+Figure \ref{img:boxplot-age-gender} shows two box plots which compare the age of runners between the genders. This is in essence a graphical representation of robust measures for centrality. The bottom and top edge of the box correspond to the IQR: 50\% of data are in the box. Across the box is a line which shows the median. Above and below of the box stretch a pair of whiskers which depict the range of values which covers 90\% of data. In this framework, data in the top or 5\% are considered outliers.
 
-The notches\cite{chambers1983} cut into the box are a representation of confidence about whether the medians of two box plots are same or different. If the notches overlap, it is interpreted as strong evidence (95\% confidence) that the medians do not differ. The top and bottom of the notch is calculated as $+- 1.57 \times IQR /  \sqrt{n}$.
+The notches\cite{chambers1983} which cut into the box are a representation of confidence about whether the medians of two box plots are same or different. If the notches overlap, it is interpreted as strong evidence (95\% confidence) that the medians do not differ. The top and bottom of the notch is calculated as $+- 1.57 \times IQR /  \sqrt{n}$.
 
 In the context of ages, the graph in figure \ref{img:boxplot-age-gender} is showing that while male runners were some of the youngest, overall they were the older group.
 
@@ -574,7 +574,7 @@ In the context of ages, the graph in figure \ref{img:boxplot-age-gender} is show
 	\caption{Correlation of pace and finishing time.}
 \end{figure}
 
-Probably most frequently seen in scientific articles, is the scatter plot. Its purpose is to visualize how one variable changes in relation to another. The scatter plot in figure \ref{img:plot-age-time} shows how the finishing time of runners changes in relation to their age (or vice versa). What can be seen in the graph is that while the most competitive runners are under 40, for the vast majority of data no apparent pattern is visible which explains finishing times as a function of age. In contrast, figure \ref{img:plot-pace-time} shows the relation between pace and finishing time. Pace is the time a runner took per mile. This graph shows a very strong correlation between the two variables -- I would wager that knowing one piece of information the other can be predicted 100\% accurately. The reason for this is hardly clairvoyance, more than likely pace is calculated at the end of a race by dividing a runner's finishing time by the number of miles in a marathon.
+Probably most frequently seen in scientific articles, is the scatter plot. Its purpose is to visualize how one variable changes in relation to another. The scatter plot in figure \ref{img:plot-age-time} shows how the finishing time of runners changes in relation to their age (or vice versa). What can be seen in the graph is that while the most competitive runners are under 40, for the vast majority of data no apparent pattern is visible which could explain finishing times as a function of age. In contrast, figure \ref{img:plot-pace-time} shows the relation between pace and finishing time. Pace is the time a runner took per mile. This graph shows a very strong correlation between the two variables -- I would wager that knowing one piece of information the other can be predicted 100\% accurately. The reason for this is hardly clairvoyance, more than likely pace is calculated at the end of a race by dividing a runner's finishing time by the number of miles in a marathon.
 
 \begin{tcolorbox}
 	Guidelines for creating legible graphs:
