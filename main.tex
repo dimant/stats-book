@@ -284,10 +284,58 @@ In R, computing the average age of marathon participants is fairly straightforwa
 [1] 36.98768
 \end{Verbatim}
 
-In closing, it is worth noting that the arithmetic mean minimizes a subtly different function than the sum of absolute errors. Instead, it minimizes the sum of square errors (see equation \ref{formula:sse})
+The arithmetic mean minimizes a subtly different function than the sum of absolute errors. Instead, it minimizes the sum of squared errors:
 
 \begin{equation} \label{formula:sse}
 	SSE = \sum_{i=1}^n (x_i - \bar{X})^2
+\end{equation}
+
+Unlike the SAE, the SSE is a differentiable function. Using derivatives, we can find the $\bar{X}$ for which the sum of squared errors is minimal. Recall that to find the extreme points of a function $f(x)$, you take the first derivative $f(x)'$ and set it to zero. As you surely know, a square function $f(x) = x^2$ has only one extreme point which is its minimum at the same time. Only two more pieces of information are needed to find where SSE has its minimum -- a couple of derivation rules:
+
+\begin{eqnarray}
+f(x) &=& x^2 \label{formula:deriv-power}\\ 
+f(x)' &=& 2x \nonumber \\
+g(x) &=& g_1(x) + g_2(x)  \label{formula:deriv-sum}\\
+g(x)' &=& g_1(x)' + g_2(x)' \nonumber
+\end{eqnarray}
+
+The first step in finding $SSE'$ with respect to $\bar{X}$ is to square the term in braces:
+
+\begin{equation}
+\sum_{i=1}^n (x_i - \bar{X})^2 = \sum_{i=1}^n x_i^2 - 2x_i\bar{X} + \bar{X}^2
+\label{formula:SSE-squared}
+\end{equation}
+
+It is helpful to decompose equation \ref{formula:SSE-squared} so that we have separate sums as opposed one big overarching $\Sigma$:
+
+\begin{equation}
+\sum_{i=1}^n x_i^2 - 2x_i\bar{X} + \bar{X}^2 = \sum_{i=1}^n x_i^2 - 2\sum_{i=1}^nx_i\bar{X} + n\bar{X}^2
+\end{equation}
+
+The term $n\bar{X}$ can be written like this because $\sum_{i=1}^n\bar{X}$ is the same as adding up $\bar{X}$ $n$ times. Now we can use the rules in equations \ref{formula:deriv-power} and \ref{formula:deriv-sum} to arrive at the first derivative of the SSE:
+
+\begin{equation}
+\frac{d}{d\bar{X}} \left(\sum_{i=1}^n x_i^2 - 2\sum_{i=1}^nx_i\bar{X} + n\bar{X}^2\right) =
+- 2\sum_{i=1}^nx_i + 2n\bar{X}
+\end{equation}
+
+The first derivative is set to zero:
+
+\begin{equation}
+- 2\sum_{i=1}^nx_i + 2n\bar{X} = 0
+\end{equation}
+
+Both sides of the equation are divided by 2 to obtain:
+
+\begin{equation}
+-\sum_{i=1}^nx_i + n\bar{X} = 0
+\label{formula:derivative-set-to-zero}
+\end{equation}
+
+To find out which $\bar{X}$ minimizes the SSE, we solve equation \ref{formula:derivative-set-to-zero} for $\bar{X}$ by adding the $\Sigma$ part on both sides of the equation and dividing by $n$ which yields:
+
+\begin{equation}
+\bar{X} = \frac{1}{n}\sum_{i=1}^nx_i.
 \end{equation}
 
 \begin{tcolorbox}
