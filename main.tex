@@ -270,7 +270,7 @@ When trying to calculate $\bar{X}$, it helps to remember that the ultimate goal 
 A function which estimates $\bar{X}$ by having the largest clump of numbers pull $\bar{X}$ towards itself the strongest is the arithmetic mean:
 
 \begin{equation} \label{formula:arithmetic-mean}
-	\bar{X} = \frac{1}{n} \sum_{i=i}^{n} x_i
+	\bar{X} = \frac{1}{n} \sum_{i=1}^{n} x_i
 \end{equation}
 
 \begin{tcolorbox}
@@ -407,8 +407,6 @@ Thoroughly discussing why the alteration is necessary would derail this text fro
 Both, variance and standard deviation are available in the R programming language. While in the example below it is shown that the square root of the variance is equal to the standard deviation, it is advisable to avoid calculating $s_x$ as the square root of the variance. Instead use the built in {\em sd} function.
 
 \begin{Verbatim}
-> dim(marathon)
-[1] 6334   10
 > var(ages)
 [1] 121.6963
 > sd(ages)
