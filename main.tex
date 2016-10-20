@@ -469,7 +469,7 @@ and the result is shown in figure \ref{img:plot-curve-ages}. Thus we have constr
 Unfortunately the real data does not look like this curve at all and we will explore why and how in the following chapters.
 
 \section{Shape}
-In the previous sections on center and spread of data we observed that the robust estimators give different values from the corresponding least squares estimators. So far this was explained by the presence of outliers however this is omitting part of the picture. So far the assumption was that there is an expected value $\mu$, some spread around $\mu$ called $\sigma$ and that the data spreads symmetrically. If the spread is asymmetrical, we say that the data is skewed. The normal distribution model presented in \ref{formula:normal-distribution} accounts only for shifts along the x-axis and changes in the bell width, skewness is not accounted for. This means that if the data is skewed, it cannot be modeled using a normal distribution. Examples of skewed curves are shown in figure \ref{img:skewness}.
+In the previous sections on center and spread of data we observed that the robust estimators give different values from the corresponding least squares estimators. So far this was explained by the presence of outliers however this is omitting part of the picture. So far the assumption was that there is an expected value $\mu$, some spread around $\mu$ called $\sigma$ and that the data spreads symmetrically. If the spread is asymmetrical, we say that the data is skewed. The normal distribution model presented in equation \ref{formula:normal-distribution} accounts only for shifts along the x-axis and changes in the bell width, skewness is not accounted for. This means that if the data is skewed, it cannot be modeled using a normal distribution. Examples of skewed curves are shown in figure \ref{img:skewness}.
 
 \begin{figure}
 	\centering
@@ -568,7 +568,7 @@ The lesson learned from the bureau's bar plot is: never use a graph to demonstra
 Of course the Department of Labor also produces other graphs which are excellent!\footnote{\url{https://goo.gl/lJ463D}}
 
 \section{Histogram}
-A close cousin of the bar plot is the histogram. While bar plots and histograms look very similar, they are fundamentally different. Bar plots compare distinct groups under the assumption that there is no meaningful data between these groups. Histograms on the other hand represent the distribution of data on a continuous scale. The two plots can be distinguished by the gaps between bars which are present in bar plots but missing in histograms.
+A close cousin of the bar plot is the histogram. While bar plots and histograms look very similar, they are fundamentally different. Bar plots compare distinct groups under the assumption that there is no meaningful data in the gaps between groups. Histograms on the other hand represent the distribution of data on a continuous scale. The two plots can be distinguished by the gaps between bars which are present in bar plots but missing in histograms.
 
 \begin{figure}
 	\centering
@@ -691,7 +691,7 @@ Using the property in equation \ref{formula:variance-property} the variance of $
 Var(\bar{X}) = Var(\frac{1}{n}\sum_{i=0}^n X_i) = \frac{1}{n^2}\sum_{i=0}^n Var(X_i) = \frac{\sigma^2}{n}
 \end{equation}
 
-to arrive at the distribution of the arithmetic mean $\bar{X} \thicksim N(\mu, \frac{\sigma^2}{n})$. This would be sufficient to test our hypothesis $H_0: \mu = 30$. In textbooks however you will find a different definition of the \hbox{Z-Test}:
+to arrive at the distribution of the arithmetic mean $\bar{X} \thicksim N(\mu, \frac{\sigma^2}{n})$. Note that we are dividing by $n$. This means that with greater $n$ the variance of the mean gets smaller or in other words, the more data we observe, the more sure we are about estimating the mean.  This would be sufficient to test our hypothesis $H_0: \mu = 30$. In textbooks however you will find a different definition of the \hbox{Z-Test}:
 
 \begin{equation}
 Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}
